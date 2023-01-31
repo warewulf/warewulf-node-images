@@ -13,11 +13,11 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build centos-7 --tag centos:7-$(date +%s)
+      run: docker build centos-7 --file centos-7/Containerfile --tag centos:7-$(date +%s)
 
   build-rockylinux-8:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build rockylinux-8 --tag rockylinux:8-$(date +%s)
+      run: docker build rockylinux-8 --file rockylinux-8/Containerfile --tag rockylinux:8-$(date +%s)
