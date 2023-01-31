@@ -1,4 +1,4 @@
-all: centos-7.tar rockylinux-8.tar openhpc-2.tar
+all: centos-7.tar rockylinux-8.tar
 .PHONY: all
 
 %.tar: %/Containerfile
