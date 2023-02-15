@@ -34,3 +34,9 @@ RUN yum update -y \
 
 COPY excludes /etc/warewulf/excludes
 COPY container_exit.sh /etc/warewulf/container_exit.sh
+
+CMD [ "/bin/echo", "-e", \
+      "This image is intended to be used with the Warewulf cluster management and", \
+      "\nprovisioning system.", \
+      "\n", \
+      "\nFor more information about Warewulf, visit https://warewulf.org" ]
