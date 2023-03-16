@@ -32,8 +32,8 @@ RUN yum update -y \
     && systemctl unmask console-getty.service dev-hugepages.mount getty.target sys-fs-fuse-connections.mount systemd-logind.service systemd-remount-fs.service \
     && systemctl enable network
 
-COPY excludes /etc/warewulf/excludes
-COPY container_exit.sh /etc/warewulf/container_exit.sh
+COPY excludes /etc/warewulf/
+COPY container_exit.sh /etc/warewulf/
 
 CMD [ "/bin/echo", "-e", \
       "This image is intended to be used with the Warewulf cluster management and", \
