@@ -52,12 +52,6 @@ jobs:
 
 
     steps:
-      - name: Determine default branch
-        run: |
-          DEFAULT_BRANCH=$(git remote show origin | awk '/HEAD branch/ {print $NF}')
-          echo "default_branch=$DEFAULT_BRANCH" >> $GITHUB_ENV
-          echo "default_branch_ref=refs/heads/$DEFAULT_BRANCH" >> $GITHUB_ENV
-
       - name: Checkout repository
         uses: actions/checkout@v3
 
@@ -94,11 +88,8 @@ jobs:
           # docker.io/warewulf/${{ matrix.os }}
           tags: |
             type=schedule
-            type=ref,event=branch
-            type=ref,event=tag
-            type=ref,event=pr
             type=raw,${{ matrix.version }}
-            type=raw,value=latest,enable=${{ (github.ref == env.default_branch_ref) && matrix.latest }}
+            type=raw,value=latest,enable=${{ matrix.latest }}
 
       # Build and push Docker image with Buildx (don't push on PR)
       # https://github.com/docker/build-push-action
