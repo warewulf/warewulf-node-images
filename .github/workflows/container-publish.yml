@@ -94,9 +94,6 @@ jobs:
           # docker.io/warewulf/${{ matrix.os }}
           tags: |
             type=schedule
-            type=ref,event=branch
-            type=ref,event=tag
-            type=ref,event=pr
             type=raw,${{ matrix.version }}
             type=raw,value=latest,enable=${{ (github.ref == env.default_branch_ref) && matrix.latest }}
 
