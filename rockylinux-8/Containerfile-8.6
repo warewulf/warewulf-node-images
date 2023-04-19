@@ -1,31 +1,33 @@
-FROM docker.io/library/rockylinux:8
+FROM docker.io/library/rockylinux:8.6
 
-RUN dnf update -y \
-    && dnf install -y --allowerasing \
-      coreutils \
-      cpio \
-      dhclient \
-      e2fsprogs \
-      ethtool \
-      findutils \
-      initscripts \
-      ipmitool \
-      iproute \
-      kernel-core \
-      kernel-modules \
-      net-tools \
-      network-scripts \
-      nfs-utils \
-      openssh-clients \
-      openssh-server \
-      pciutils \
-      psmisc \
-      rsync \
-      rsyslog \
-      strace \
-      wget \
-      which \
-      words \
+COPY Rocky-Vault-8.6-*.repo /etc/yum.repos.d
+
+RUN dnf update -y --disablerepo "*" --enablerepo *-vault-8.6 \
+    && dnf install -y --disablerepo "*" --enablerepo *-vault-8.6 --allowerasing \
+         coreutils \
+         cpio \
+         dhclient \
+         e2fsprogs \
+         ethtool \
+         findutils \
+         initscripts \
+         ipmitool \
+         iproute \
+         kernel-core \
+         kernel-modules \
+         net-tools \
+         network-scripts \
+         nfs-utils \
+         openssh-clients \
+         openssh-server \
+         pciutils \
+         psmisc \
+         rsync \
+         rsyslog \
+         strace \
+         wget \
+         which \
+         words \
     && dnf clean all
 
 RUN sed -i -e '/^account.*pam_unix\.so\s*$/s/\s*$/\ broken_shadow/' /etc/pam.d/system-auth \
