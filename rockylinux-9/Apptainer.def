@@ -1,0 +1,53 @@
+BootStrap: docker
+From: rockylinux:9
+
+%setup
+    mkdir ${APPTAINER_ROOTFS}/etc/warewulf
+    chown root:root ${APPTAINER_ROOTFS}/etc/warewulf
+    chmod 0755 ${APPTAINER_ROOTFS}/etc/warewulf
+
+%files
+    container_exit.sh /etc/warewulf/container_exit.sh
+    excludes /etc/warewulf/excludes
+
+%post
+    dnf update -y
+
+    dnf install -y --allowerasing \
+      coreutils \
+      cpio \
+      dhclient \
+      e2fsprogs \
+      ethtool \
+      findutils \
+      initscripts \
+      ipmitool \
+      iproute \
+      kernel-core \
+      kernel-modules \
+      ncurses \
+      net-tools \
+      NetworkManager \
+      nfs-utils \
+      openssh-clients \
+      openssh-server \
+      pciutils \
+      policycoreutils-python-utils \
+      psmisc \
+      rsync \
+      rsyslog \
+      strace \
+      selinux-policy-targeted \
+      wget \
+      which \
+      words \
+      rdma-core
+
+    dnf clean all
+    touch /etc/sysconfig/disable-deprecation-warnings
+    semanage fcontext -N -a -t bin_t /warewulf/wwclient
+    chmod +x /etc/warewulf/container_exit.sh
+
+%runscript
+    /bin/echo -e "This image is intended to be used with the Warewulf cluster management and provisioning system.\n\n" \
+                 "For more information about Warewulf, visit https://warewulf.org\n"
