@@ -34,6 +34,12 @@ RUN dnf update -y \
 
 RUN touch /etc/sysconfig/disable-deprecation-warnings
 
+# For SELinux enabled nodes:
+#   The wwclient service fails to start on boot if appropriate SELinux file
+#   context label is not set for /warewulf/wwclient.
+#   Permanently assign bin_t fcontent label for wwclient binary that is
+#   deployed by wwinit overlay because warewulf runs `restorecon -R /` on node
+#   boot, clobbering any existing labels set in the overlay itself.
 RUN semanage fcontext -N -a -t bin_t /warewulf/wwclient
 
 COPY excludes /etc/warewulf/
