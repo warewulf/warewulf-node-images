@@ -26,37 +26,30 @@ jobs:
             version: 7
             context: centos-7
             file: centos-7/Containerfile
-            latest: true
           - os: rockylinux
             version: 8
             context: rockylinux-8
             file: rockylinux-8/Containerfile
-            latest: true
           - os: rockylinux
             version: 8.6
             context: rockylinux-8
             file: rockylinux-8/Containerfile-8.6
-            latest: false
           - os: rockylinux
             version: 8.7
             context: rockylinux-8
             file: rockylinux-8/Containerfile-8.7
-            latest: false
           - os: rockylinux
             version: 9
             context: rockylinux-9
             file: rockylinux-9/Containerfile
-            latest: true
           - os: leap
             version: 15
             context: leap
             file: leap/Containerfile.15
-            latest: false
           - os: leap
             version: latest
             context: leap
             file: leap/Containerfile
-            latest: true
 
     permissions:
       contents: read
@@ -104,7 +97,6 @@ jobs:
           tags: |
             type=schedule
             type=raw,${{ matrix.version }}
-            type=raw,value=latest,enable=${{ matrix.latest }}
 
       # Build and push Docker image with Buildx (don't push on PR)
       # https://github.com/docker/build-push-action
