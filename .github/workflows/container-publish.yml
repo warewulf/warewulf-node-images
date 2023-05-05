@@ -46,6 +46,14 @@ jobs:
             version: 9
             context: rockylinux-9
             file: rockylinux-9/Containerfile
+          - os: rockylinux
+            version: 9.0
+            context: rockylinux-9
+            file: rockylinux-9/Containerfile-9.0
+          - os: rockylinux
+            version: 9.1
+            context: rockylinux-9
+            file: rockylinux-9/Containerfile-9.1
           - os: leap
             version: 15
             context: leap

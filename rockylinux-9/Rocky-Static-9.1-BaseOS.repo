@@ -1,0 +1,7 @@
+[baseos-static-9.1]
+name=Rocky Linux 9.1 - BaseOS
+baseurl=http://dl.rockylinux.org/pub/rocky/9.1/BaseOS/$basearch/os/
+gpgcheck=1
+enabled=0
+countme=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-Rocky-9
