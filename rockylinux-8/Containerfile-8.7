@@ -21,9 +21,11 @@ RUN dnf update -y --disablerepo "*" --enablerepo *-static-8.7 \
          openssh-clients \
          openssh-server \
          pciutils \
+         policycoreutils-python-utils \
          psmisc \
          rsync \
          rsyslog \
+         selinux-policy-targeted \
          strace \
          wget \
          which \
@@ -36,6 +38,14 @@ RUN sed -i -e '/^account.*pam_unix\.so\s*$/s/\s*$/\ broken_shadow/' /etc/pam.d/s
     && systemctl unmask console-getty.service dev-hugepages.mount getty.target sys-fs-fuse-connections.mount systemd-logind.service systemd-remount-fs.service \
     && systemctl enable network \
     && touch /etc/sysconfig/disable-deprecation-warnings
+
+# For SELinux enabled nodes:
+#   The wwclient service fails to start on boot if appropriate SELinux file
+#   context label is not set for /warewulf/wwclient.
+#   Permanently assign bin_t fcontent label for wwclient binary that is
+#   deployed by wwinit overlay because warewulf runs `restorecon -R /` on node
+#   boot, clobbering any existing labels set in the overlay itself.
+RUN semanage fcontext -N -a -t bin_t /warewulf/wwclient
 
 COPY excludes /etc/warewulf/
 COPY container_exit.sh /etc/warewulf/
