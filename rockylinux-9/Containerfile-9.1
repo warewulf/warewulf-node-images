@@ -1,9 +1,9 @@
 FROM docker.io/library/rockylinux:9.1
 
-COPY Rocky-Static-9.1-*.repo /etc/yum.repos.d
+COPY yum.repos.d-9.1/*.repo /etc/yum.repos.d
 
-RUN dnf update -y --disablerepo "*" --enablerepo *-static-9.1 \
-    && dnf install -y --disablerepo "*" --enablerepo *-static-9.1 --allowerasing \
+RUN dnf update -y \
+    && dnf install -y --allowerasing \
       coreutils \
       cpio \
       dhclient \
