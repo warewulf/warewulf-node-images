@@ -1,6 +1,6 @@
 [extras-static-9.1]
 name=Rocky Linux 9.1 - Extras
-baseurl=http://dl.rockylinux.org/pub/rocky/9.1/extras/$basearch/os/
+baseurl=http://dl.rockylinux.org/vault/rocky/9.1/extras/$basearch/os/
 gpgcheck=1
 enabled=0
 countme=1
