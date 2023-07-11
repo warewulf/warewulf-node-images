@@ -1,0 +1,45 @@
+FROM docker.io/library/rockylinux:8.8
+
+COPY Rocky-Static-8.8-*.repo /etc/yum.repos.d
+
+RUN dnf update -y --disablerepo "*" --enablerepo *-static-8.8 \
+    && dnf install -y --disablerepo "*" --enablerepo *-static-8.8 --allowerasing \
+         coreutils \
+         cpio \
+         dhclient \
+         e2fsprogs \
+         ethtool \
+         findutils \
+         initscripts \
+         ipmitool \
+         iproute \
+         kernel-core \
+         kernel-modules \
+         net-tools \
+         network-scripts \
+         nfs-utils \
+         openssh-clients \
+         openssh-server \
+         pciutils \
+         psmisc \
+         rsync \
+         rsyslog \
+         strace \
+         wget \
+         which \
+         words \
+    && dnf clean all
+
+RUN rm -f /etc/sysconfig/network-scripts/ifcfg-e* \
+    && systemctl unmask console-getty.service dev-hugepages.mount getty.target sys-fs-fuse-connections.mount systemd-logind.service systemd-remount-fs.service \
+    && systemctl enable network \
+    && touch /etc/sysconfig/disable-deprecation-warnings
+
+COPY excludes /etc/warewulf/
+COPY container_exit.sh /etc/warewulf/
+
+CMD [ "/bin/echo", "-e", \
+      "This image is intended to be used with the Warewulf cluster management and", \
+      "\nprovisioning system.", \
+      "\n", \
+      "\nFor more information about Warewulf, visit https://warewulf.org" ]
