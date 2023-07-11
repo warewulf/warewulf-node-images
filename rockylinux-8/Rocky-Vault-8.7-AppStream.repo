@@ -1,6 +1,6 @@
-[appstream-static-8.7]
-name=Rocky Linux 8.7 - AppStream
-baseurl=http://dl.rockylinux.org/pub/rocky/8.7/AppStream/$basearch/os/
+[appstream-vault-8.7]
+name=Rocky Linux Vault 8.7 - AppStream
+baseurl=http://dl.rockylinux.org/vault/rocky/8.7/AppStream/$basearch/os/
 gpgcheck=1
 enabled=0
 countme=1

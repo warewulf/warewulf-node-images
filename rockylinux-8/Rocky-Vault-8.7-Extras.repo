@@ -1,6 +1,6 @@
-[extras-static-8.7]
-name=Rocky Linux 8.7 - Extras
-baseurl=http://dl.rockylinux.org/pub/rocky/8.7/extras/$basearch/os/
+[extras-vault-8.7]
+name=Rocky Linux Vault 8.7 - Extras
+baseurl=http://dl.rockylinux.org/vault/rocky/8.7/extras/$basearch/os/
 gpgcheck=1
 enabled=0
 countme=1

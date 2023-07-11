@@ -1,9 +1,9 @@
 FROM docker.io/library/rockylinux:8.7
 
-COPY Rocky-Static-8.7-*.repo /etc/yum.repos.d
+COPY Rocky-Vault-8.7-*.repo /etc/yum.repos.d
 
-RUN dnf update -y --disablerepo "*" --enablerepo *-static-8.7 \
-    && dnf install -y --disablerepo "*" --enablerepo *-static-8.7 --allowerasing \
+RUN dnf update -y --disablerepo "*" --enablerepo *-vault-8.7 \
+    && dnf install -y --disablerepo "*" --enablerepo *-vault-8.7 --allowerasing \
          coreutils \
          cpio \
          dhclient \
