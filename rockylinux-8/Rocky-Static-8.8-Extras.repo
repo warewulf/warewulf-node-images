@@ -1,0 +1,7 @@
+[extras-static-8.8]
+name=Rocky Linux 8.8 - Extras
+baseurl=http://dl.rockylinux.org/pub/rocky/8.8/extras/$basearch/os/
+gpgcheck=1
+enabled=0
+countme=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-rockyofficial

@@ -1,0 +1,7 @@
+[appstream-vault-8.7]
+name=Rocky Linux Vault 8.7 - AppStream
+baseurl=http://dl.rockylinux.org/vault/rocky/8.7/AppStream/$basearch/os/
+gpgcheck=1
+enabled=0
+countme=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-rockyofficial
