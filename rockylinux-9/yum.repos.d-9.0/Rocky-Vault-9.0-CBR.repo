@@ -1,7 +1,7 @@
-[crb-vault-9.0]
-name=Rocky Linux 9.0 - CRB
+[crb]
+name=Rocky Linux - CRB
 baseurl=http://dl.rockylinux.org/vault/rocky/9.0/CRB/$basearch/os/
 gpgcheck=1
-enabled=0
+enabled=1
 countme=1
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-Rocky-9
