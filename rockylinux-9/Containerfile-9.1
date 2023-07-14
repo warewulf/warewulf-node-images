@@ -1,7 +1,9 @@
-FROM docker.io/library/rockylinux:9
+FROM docker.io/library/rockylinux:9.1
 
-RUN dnf update -y \
-    && dnf install -y --allowerasing \
+COPY Rocky-Static-9.1-*.repo /etc/yum.repos.d
+
+RUN dnf update -y --disablerepo "*" --enablerepo *-static-9.1 \
+    && dnf install -y --disablerepo "*" --enablerepo *-static-9.1 --allowerasing \
       coreutils \
       cpio \
       dhclient \
@@ -40,6 +42,7 @@ RUN touch /etc/sysconfig/disable-deprecation-warnings
 #   Permanently assign bin_t fcontent label for wwclient binary that is
 #   deployed by wwinit overlay because warewulf runs `restorecon -R /` on node
 #   boot, clobbering any existing labels set in the overlay itself.
+#
 RUN semanage fcontext -N -a -t bin_t /warewulf/wwclient
 
 COPY excludes /etc/warewulf/

@@ -1,7 +1,9 @@
-FROM docker.io/library/rockylinux:9
+FROM docker.io/library/rockylinux:9.0
 
-RUN dnf update -y \
-    && dnf install -y --allowerasing \
+COPY Rocky-Vault-9.0-*.repo /etc/yum.repos.d
+
+RUN dnf update -y --disablerepo "*" --enablerepo *-vault-9.0 \
+    && dnf install -y --disablerepo "*" --enablerepo *-vault-9.0 --allowerasing \
       coreutils \
       cpio \
       dhclient \
@@ -40,7 +42,12 @@ RUN touch /etc/sysconfig/disable-deprecation-warnings
 #   Permanently assign bin_t fcontent label for wwclient binary that is
 #   deployed by wwinit overlay because warewulf runs `restorecon -R /` on node
 #   boot, clobbering any existing labels set in the overlay itself.
-RUN semanage fcontext -N -a -t bin_t /warewulf/wwclient
+#
+#   WARNING: THE FOLLOWING RETURNS AN ERROR WITH libsemanage VERSIONS IN EL9
+#            PRIOR TO 3.3.3 SO WE FORCE A CLEAN EXIT CODE
+#            See: https://github.com/SELinuxProject/selinux/issues/343
+#
+RUN semanage fcontext -N -a -t bin_t /warewulf/wwclient || true
 
 COPY excludes /etc/warewulf/
 COPY container_exit.sh /etc/warewulf/

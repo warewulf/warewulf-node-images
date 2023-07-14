@@ -1,0 +1,7 @@
+[appstream-static-9.1]
+name=Rocky Linux 9.1 - AppStream
+baseurl=http://dl.rockylinux.org/vault/rocky/9.1/AppStream/$basearch/os/
+gpgcheck=1
+enabled=0
+countme=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-Rocky-9
