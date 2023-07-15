@@ -1,8 +1,9 @@
 FROM docker.io/library/rockylinux:8.8
 
-COPY yum.repos.d-8.8/*.repo /etc/yum.repos.d
+RUN rm -f /etc/yum.repos.d/*.repo \
+    && dnf clean all
 
-RUN dnf clean all
+COPY yum.repos.d-8.8/*.repo /etc/yum.repos.d
 
 RUN dnf update -y \
     && dnf install -y --allowerasing \
