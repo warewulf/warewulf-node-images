@@ -1,6 +1,6 @@
 [baseos]
 name=Rocky Linux - BaseOS
-baseurl=http://dl.rockylinux.org/pub/rocky/8.8/BaseOS/$basearch/os/
+baseurl=http://dl.rockylinux.org/vault/rocky/8.8/BaseOS/$basearch/os/
 gpgcheck=1
 enabled=1
 countme=1

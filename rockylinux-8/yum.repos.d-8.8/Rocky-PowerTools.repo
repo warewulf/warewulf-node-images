@@ -1,6 +1,6 @@
 [powertools]
 name=Rocky Linux - PowerTools
-baseurl=http://dl.rockylinux.org/pub/rocky/8.8/PowerTools/$basearch/os/
+baseurl=http://dl.rockylinux.org/vault/rocky/8.8/PowerTools/$basearch/os/
 gpgcheck=1
 enabled=1
 countme=1
