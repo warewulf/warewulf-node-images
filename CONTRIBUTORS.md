@@ -5,3 +5,4 @@
 * Jonathon Anderson <janderson@ciq.co>
 * Ryan Thomson <ryan.thomson@ubc.ca>
 * Brian Phan <bphan@ciq.com>
+* Simppa Äkäslompolo (@sjjamsa)
