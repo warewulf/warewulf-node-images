@@ -139,11 +139,9 @@ jobs:
       - name: Sign image with a key
         if: github.event_name != 'pull_request'
         run: |
-          cosign sign --yes --key env://COSIGN_PRIVATE_KEY "${TAGS}@${DIGEST}"
+          cosign sign --yes "${TAGS}@${DIGEST}"
         env:
           TAGS: ${{ steps.docker_meta.outputs.tags }}
-          COSIGN_PRIVATE_KEY: ${{ secrets.COSIGN_PRIVATE_KEY }}
-          COSIGN_PASSWORD: ${{ secrets.COSIGN_PASSWORD }}
           DIGEST: ${{ steps.build-and-push.outputs.digest }}
 
       - name: Sign the images with GitHub OIDC Token
