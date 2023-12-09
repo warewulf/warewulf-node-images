@@ -9,9 +9,9 @@
 # baseurl line instead.
 
 [extras]
-name=Rocky Linux 9.2 - Extras
+name=Rocky Linux 9.3 - Extras
 #mirrorlist=https://mirrors.rockylinux.org/mirrorlist?arch=$basearch&repo=extras-$releasever$rltype
-baseurl=http://dl.rockylinux.org/vault/rocky/9.2/extras/$basearch/os/
+baseurl=http://dl.rockylinux.org/pub/rocky/9.3/extras/$basearch/os/
 gpgcheck=1
 enabled=1
 countme=1
@@ -19,27 +19,27 @@ metadata_expire=6h
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-Rocky-9
 
 [extras-debug]
-name=Rocky Linux 9.2 - Extras Debug
+name=Rocky Linux 9.3 - Extras Debug
 #mirrorlist=https://mirrors.rockylinux.org/mirrorlist?arch=$basearch&repo=extras-$releasever-debug$rltype
-baseurl=http://dl.rockylinux.org/vault/rocky/9.2/extras/$basearch/debug/tree/
+baseurl=http://dl.rockylinux.org/pub/rocky/9.3/extras/$basearch/debug/tree/
 gpgcheck=1
 enabled=0
 metadata_expire=6h
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-Rocky-9
 
 [extras-source]
-name=Rocky Linux 9.2 - Extras Source
+name=Rocky Linux 9.3 - Extras Source
 #mirrorlist=https://mirrors.rockylinux.org/mirrorlist?arch=$basearch&repo=extras-$releasever-source$rltype
-baseurl=http://dl.rockylinux.org/vault/rocky/9.2/extras/source/tree/
+baseurl=http://dl.rockylinux.org/pub/rocky/9.3/extras/source/tree/
 gpgcheck=1
 enabled=0
 metadata_expire=6h
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-Rocky-9
 
 [plus]
-name=Rocky Linux 9.2 - Plus
+name=Rocky Linux 9.3 - Plus
 #mirrorlist=https://mirrors.rockylinux.org/mirrorlist?arch=$basearch&repo=plus-$releasever$rltype
-baseurl=http://dl.rockylinux.org/vault/rocky/9.2/plus/$basearch/os/
+baseurl=http://dl.rockylinux.org/pub/rocky/9.3/plus/$basearch/os/
 gpgcheck=1
 enabled=0
 countme=1
@@ -47,18 +47,18 @@ metadata_expire=6h
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-Rocky-9
 
 [plus-debug]
-name=Rocky Linux 9.2 - Plus - Debug
+name=Rocky Linux 9.3 - Plus - Debug
 #mirrorlist=https://mirrors.rockylinux.org/mirrorlist?arch=$basearch&repo=plus-$releasever-debug$rltype
-baseurl=http://dl.rockylinux.org/vault/rocky/9.2/plus/$basearch/debug/tree/
+baseurl=http://dl.rockylinux.org/pub/rocky/9.3/plus/$basearch/debug/tree/
 gpgcheck=1
 enabled=0
 metadata_expire=6h
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-Rocky-9
 
 [plus-source]
-name=Rocky Linux 9.2 - Plus - Source
+name=Rocky Linux 9.3 - Plus - Source
 #mirrorlist=https://mirrors.rockylinux.org/mirrorlist?arch=source&repo=plus-$releasever-source$rltype
-baseurl=http://dl.rockylinux.org/vault/rocky/9.2/plus/source/tree/
+baseurl=http://dl.rockylinux.org/pub/rocky/9.3/plus/source/tree/
 gpgcheck=1
 enabled=0
 metadata_expire=6h
