@@ -136,14 +136,6 @@ jobs:
           cache-to: type=gha,mode=max
 
       # https://docs.github.com/en/actions/security-guides/security-hardening-for-github-actions#using-an-intermediate-environment-variable
-      - name: Sign image with a key
-        if: github.event_name != 'pull_request'
-        run: |
-          cosign sign --yes "${TAGS}@${DIGEST}"
-        env:
-          TAGS: ${{ steps.docker_meta.outputs.tags }}
-          DIGEST: ${{ steps.build-and-push.outputs.digest }}
-
       - name: Sign the images with GitHub OIDC Token
         if: github.event_name != 'pull_request'
         env:
