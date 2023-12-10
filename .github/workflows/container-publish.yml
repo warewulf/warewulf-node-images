@@ -140,6 +140,5 @@ jobs:
         if: github.event_name != 'pull_request'
         env:
           DIGEST: ${{ steps.build-and-push.outputs.digest }}
-          TAGS: ${{ steps.docker_meta.outputs.tags }}
-          COSIGN_EXPERIMENTAL: 1
+          TAGS: ${{ steps.meta.outputs.tags }}
         run: cosign sign --yes "${TAGS}@${DIGEST}"
