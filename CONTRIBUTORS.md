@@ -6,3 +6,4 @@
 * Ryan Thomson <ryan.thomson@ubc.ca>
 * Brian Phan <bphan@ciq.com>
 * Simppa Äkäslompolo (@sjjamsa)
+* Carlos Felipe S Pinheiro <felpin1@gmail.com>

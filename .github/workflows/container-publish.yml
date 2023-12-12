@@ -74,6 +74,10 @@ jobs:
             version: latest
             context: leap
             file: leap/Containerfile
+          - os: debian
+            version: "12.0"
+            context: debian
+            file: debian/Containerfile-12.0
 
     permissions:
       contents: read
