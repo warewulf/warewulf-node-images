@@ -14,7 +14,7 @@ RUN dnf update -y \
       kernel-core \
       kernel-modules \
       net-tools \
-      network-scripts \
+      NetworkManager \
       nfs-utils \
       openssh-clients \
       openssh-server \
@@ -28,10 +28,13 @@ RUN dnf update -y \
       words \
     && dnf clean all
 
-RUN rm -f /etc/sysconfig/network-scripts/ifcfg-e* \
-    && systemctl unmask console-getty.service dev-hugepages.mount getty.target sys-fs-fuse-connections.mount systemd-logind.service systemd-remount-fs.service \
-    && systemctl enable network \
-    && touch /etc/sysconfig/disable-deprecation-warnings
+RUN systemctl unmask \
+      console-getty.service \
+      dev-hugepages.mount \
+      getty.target \
+      sys-fs-fuse-connections.mount \
+      systemd-logind.service \
+      systemd-remount-fs.service
 
 COPY excludes /etc/warewulf/
 COPY container_exit.sh /etc/warewulf/

@@ -91,6 +91,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      - name: Make Containerfiles
+        run: |
+          make -C rockylinux-8
+          make -C rockylinux-9
+
       # Install the cosign tool
       # https://github.com/sigstore/cosign-installer
       - name: Install Cosign
