@@ -1,4 +1,4 @@
-# Rocky Linux 8
+# Rocky Linux 9
 
 A Warewulf container definition based on Rocky Linux 9.
 
