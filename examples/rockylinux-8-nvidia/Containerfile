@@ -1,0 +1,10 @@
+FROM ghcr.io/hpcng/warewulf-rockylinux:8
+
+RUN dnf -y install epel-release \
+    && dnf config-manager --add-repo http://developer.download.nvidia.com/compute/cuda/repos/rhel8/$(arch)/cuda-rhel8.repo \
+    && dnf -y install kernel-{core,devel,headers,modules-extra} \
+    && dnf -y remove $(dnf repoquery --installonly --latest-limit=-1 -q) \
+    && dnf -y module install nvidia-driver:520-dkms \
+    && dnf clean all
+
+RUN for module in $(dkms status | grep -o '^[^:]*'); do for kernel in $(cd /lib/modules; ls); do dkms build ${module} -k ${kernel}; done; done
