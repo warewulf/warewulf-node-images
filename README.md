@@ -19,7 +19,8 @@ These containers are published on the [GitHub container registry][1].
 Additional container definitions that are not actively built and published, but
 may still be useful.
 
-* [Rocky Linux 9 with SELinux][examples/rockylinux-9-selinux]
+* [Rocky Linux 9 with SELinux](examples/rockylinux-9-selinux)
+* [Rocky Linux 9 with Mellanox OFED](examples/rockylinux-9-mofed)
 
 You can build any of these (or the other container definitions) locally for
 import into Warewulf v4.

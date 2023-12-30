@@ -1,0 +1,25 @@
+FROM ghcr.io/hpcng/warewulf-rockylinux:9.2
+
+RUN dnf -y install \
+        gcc \
+        patch \
+        libtool \
+        lsof \
+        kernel-rpm-macros \
+        make \
+        rpm-build \
+        gdb-headless \
+        python3-devel \
+        elfutils-libelf-devel \
+        gcc-gfortran \
+        tk \
+        kernel-{core,devel,headers,modules-extra} \
+        perl-sigtrap \
+        numactl-libs \
+        tcsh \
+    && dnf -y remove $(dnf repoquery --installonly --latest-limit=-1 -q) \
+    && dnf clean all
+
+RUN (cd /tmp && tar -xf /mnt/MLNX_OFED_LINUX-5.8-3.0.7.0-rhel9.2-x86_64.tgz) \
+    && (cd /tmp/MLNX_OFED_LINUX-5.8-3.0.7.0-rhel9.2-x86_64 && ./mlnxofedinstall --distro rhel9.2 --skip-repo --kernel $(rpm -q kernel-core --qf '%{version}-%{release}.%{arch}\n' | tail -n 1) --add-kernel-support --hpc) \
+    && rm -rf /tmp/MLNX_OFED_LINUX*
