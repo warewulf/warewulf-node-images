@@ -1,7 +1,0 @@
-[extras]
-name=Rocky Linux - Extras
-baseurl=http://dl.rockylinux.org/vault/rocky/9.1/extras/$basearch/os/
-gpgcheck=1
-enabled=1
-countme=1
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-Rocky-9

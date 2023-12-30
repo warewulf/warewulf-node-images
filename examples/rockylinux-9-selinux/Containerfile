@@ -1,0 +1,16 @@
+FROM ghcr.io/hpcng/warewulf-rockylinux:9
+
+RUN dnf -y install \
+      policycoreutils-python-utils \
+      selinux-policy-targeted
+
+# For SELinux enabled nodes:
+#   The wwclient service fails to start on boot if an appropriate SELinux file
+#   context label is not set for /warewulf/wwclient.
+#
+#   NOTE: THE FOLLOWING EXITS NONZERO WITH libsemanage VERSIONS IN EL9
+#         PRIOR TO 3.3.3 SO WE FORCE A CLEAN EXIT CODE
+#
+#         See: https://github.com/SELinuxProject/selinux/issues/343
+#
+RUN semanage fcontext -N -a -t bin_t /warewulf/wwclient || true
