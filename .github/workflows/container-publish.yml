@@ -6,6 +6,7 @@ name: Build and publish OCI images
 # documentation.
 
 on:
+  workflow_dispatch:
   push:
     branches: [ "main" ]
     # Publish semver tags as releases.
