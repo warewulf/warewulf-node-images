@@ -1,4 +1,4 @@
-FROM ghcr.io/hpcng/warewulf-rockylinux:9.2
+FROM ghcr.io/warewulf/warewulf-rockylinux:9.2
 
 RUN dnf -y install \
         gcc \

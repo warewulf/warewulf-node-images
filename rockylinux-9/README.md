@@ -3,7 +3,7 @@
 A Warewulf container definition based on Rocky Linux 9.
 
 ```
-wwctl container import docker://ghcr.io/hpcng/warewulf-rockylinux:9 rockylinux-9
+wwctl container import docker://ghcr.io/warewulf/warewulf-rockylinux:9 rockylinux-9
 ```
 
 Also available are definitions for individual point releases (e.g., Rocky Linux

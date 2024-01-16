@@ -8,7 +8,7 @@ https://warewulf.org
 
 These containers are published on the [GitHub container registry][1].
 
-[1]: https://github.com/orgs/hpcng/packages?repo_name=warewulf-node-images
+[1]: https://github.com/orgs/warewulf/packages?repo_name=warewulf-node-images
 
 * [Rocky Linux 8](rockylinux-8)
 * [Rocky Linux 9](rockylinux-9)
