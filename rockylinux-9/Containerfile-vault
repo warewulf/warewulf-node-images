@@ -1,10 +1,10 @@
-FROM docker.io/library/rockylinux:${releasever}
+FROM docker.io/library/rockylinux:${release}
 
 RUN sed -i /etc/yum.repos.d/rocky*.repo \
       -e 's/^#baseurl=/baseurl=/' \
       -e 's/^mirrorlist=/#mirrorlist=/' \
+      -e 's/\$releasever/${release}/' \
     && echo 'vault/rocky' >/etc/dnf/vars/contentdir \
-    && echo "${releasever}" >/etc/dnf/vars/releasever \
     && dnf clean all
 
 RUN dnf update -y \

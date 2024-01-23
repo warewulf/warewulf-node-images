@@ -9,7 +9,7 @@ clean:
 	rm -f Containerfile-9.*
 
 Containerfile-9.%: Containerfile-vault
-	env releasever=9.$* envsubst <Containerfile-vault >$@
+	env release=9.$* envsubst '$$release' <Containerfile-vault >$@
 
 Containerfile-9.3: Containerfile-fixed
-	env releasever=9.3 envsubst <Containerfile-fixed >$@
+	env release=9.3 envsubst '$$release' <Containerfile-fixed >$@
