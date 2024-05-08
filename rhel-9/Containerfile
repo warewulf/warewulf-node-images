@@ -1,4 +1,4 @@
-FROM registry.access.redhat.com/ubi9/ubi
+FROM registry.access.redhat.com/ubi9/ubi:9.3
 
 # copy the build system's subscription
 # https://access.redhat.com/solutions/5870841
