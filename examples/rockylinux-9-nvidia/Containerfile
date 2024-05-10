@@ -1,8 +1,9 @@
-FROM ghcr.io/hpcng/warewulf-rockylinux:9
+FROM ghcr.io/warewulf/warewulf-rockylinux:9
 
 RUN dnf -y install dnf-plugins-core epel-release kernel-headers \
     && dnf config-manager --add-repo https://developer.download.nvidia.com/compute/cuda/repos/rhel9/$(arch)/cuda-rhel9.repo \
     && dnf -y module install nvidia-driver:latest-dkms \
     && dnf clean all \
+    && dnf install datacenter-gpu-manager \
     && ls /lib/modules | xargs -n1 /usr/lib/dkms/dkms_autoinstaller start \
     && dkms status
