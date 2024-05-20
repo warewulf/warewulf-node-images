@@ -25,8 +25,7 @@ RUN dnf versionlock -y \
 
 
 # this imitates a server groupinstall
-RUN dnf update -y \
-    && dnf install -y --allowerasing \
+RUN dnf install -y --allowerasing \
       coreutils \
       cpio \
       dhclient \
@@ -36,8 +35,6 @@ RUN dnf update -y \
       initscripts \
       ipmitool \
       iproute \
-      kernel-core \
-      kernel-modules \
       ncurses \
       net-tools \
       NetworkManager \
