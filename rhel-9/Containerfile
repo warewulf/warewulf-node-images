@@ -7,6 +7,23 @@ FROM registry.access.redhat.com/ubi9/ubi:9.3
 ##COPY subscription/entitlement/* /etc/pki/entitlement
 ##RUN rm -f /etc/rhsm-host && rm -f /etc/pki/entitlement-host
 
+
+#Versionlock the kernel:
+dnf install \
+    kernel-0:5.14.0-362.24.1.el9_3.* \
+    kernel-core-0:5.14.0-362.24.1.el9_3.* \
+    kernel-headers-0:5.14.0-362.24.1.el9_3.* \
+    kernel-modules-core-0:5.14.0-362.24.1.el9_3.*
+
+dnf install \
+    python3-dnf-plugin-versionlock
+dnf versionlock \
+    kernel-0:5.14.0-362.24.1.el9_3.* \
+    kernel-core-0:5.14.0-362.24.1.el9_3.* \
+    kernel-headers-0:5.14.0-362.24.1.el9_3.* \
+    kernel-modules-core-0:5.14.0-362.24.1.el9_3.*
+
+
 # this imitates a server groupinstall
 RUN dnf update -y \
     && dnf install -y --allowerasing \
