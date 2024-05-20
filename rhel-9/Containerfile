@@ -1,0 +1,78 @@
+FROM registry.access.redhat.com/ubi9/ubi:9.3
+
+# copy the build system's subscription
+# https://access.redhat.com/solutions/5870841
+##COPY subscription/redhat.repo /etc/yum.repos.d/redhat.repo
+##COPY subscription/rhsm/* /etc/rhsm
+##COPY subscription/entitlement/* /etc/pki/entitlement
+##RUN rm -f /etc/rhsm-host && rm -f /etc/pki/entitlement-host
+
+
+#Versionlock the kernel:
+RUN dnf install -y \
+    kernel-0:5.14.0-362.24.1.el9_3 \
+    kernel-core-0:5.14.0-362.24.1.el9_3 \
+    kernel-headers-0:5.14.0-362.24.1.el9_3 \
+    kernel-modules-core-0:5.14.0-362.24.1.el9_3
+
+RUN dnf install -y \
+    python3-dnf-plugin-versionlock
+RUN dnf versionlock -y \
+    kernel-0:5.14.0-362.24.1.el9_3.* \
+    kernel-core-0:5.14.0-362.24.1.el9_3.* \
+    kernel-headers-0:5.14.0-362.24.1.el9_3.* \
+    kernel-modules-core-0:5.14.0-362.24.1.el9_3.*
+
+
+# this imitates a server groupinstall
+RUN dnf install -y --allowerasing \
+      coreutils \
+      cpio \
+      dhclient \
+      e2fsprogs \
+      ethtool \
+      findutils \
+      initscripts \
+      ipmitool \
+      iproute \
+      ncurses \
+      net-tools \
+      NetworkManager \
+      nfs-utils \
+      openssh-clients \
+      openssh-server \
+      pciutils \
+      policycoreutils-python-utils \
+      psmisc \
+      rsync \
+      rsyslog \
+      strace \
+      selinux-policy-targeted \
+      wget \
+      which \
+      words \
+      rdma-core \
+    && dnf clean all
+
+# Unmask what RHEL masked in the ubi
+# Needed to get an actual login tty
+RUN rm -f /etc/systemd/system/systemd-logind.service && rm -f /etc/systemd/system/getty.target && rm -f /etc/systemd/system/console-getty.service && rm -f /etc/systemd/system/sys-fs-fuse-connections.mount && rm -f /etc/systemd/system/systemd-remount-fs.service && rm -f /etc/systemd/system/dev-hugepages.mount
+
+# For SELinux enabled nodes:
+
+#   The wwclient service fails to start on boot if appropriate SELinux file
+#   context label is not set for /warewulf/wwclient.
+#   Permanently assign bin_t fcontent label for wwclient binary that is
+#   deployed by wwinit overlay because warewulf runs `restorecon -R /` on node
+#   boot, clobbering any existing labels set in the overlay itself.
+#
+# RUN semanage fcontext -N -a -t bin_t /warewulf/wwclient
+
+COPY excludes /etc/warewulf/
+COPY container_exit.sh /etc/warewulf/
+
+CMD [ "/bin/echo", "-e", \
+      "This image is intended to be used with the Warewulf cluster management and", \
+      "\nprovisioning system.", \
+      "\n", \
+      "\nFor more information about Warewulf, visit https://warewulf.org" ]
