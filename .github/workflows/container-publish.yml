@@ -28,10 +28,6 @@ jobs:
             context: rockylinux-8
             file: rockylinux-8/Containerfile
           - os: rockylinux
-            version: 8.6
-            context: rockylinux-8
-            file: rockylinux-8/Containerfile-8.6
-          - os: rockylinux
             version: 8.7
             context: rockylinux-8
             file: rockylinux-8/Containerfile-8.7

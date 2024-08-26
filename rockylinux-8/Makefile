@@ -1,5 +1,4 @@
 .PHONY: all
-all: Containerfile-8.6
 all: Containerfile-8.7
 all: Containerfile-8.8
 all: Containerfile-8.9
