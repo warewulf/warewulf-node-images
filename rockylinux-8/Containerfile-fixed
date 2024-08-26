@@ -1,4 +1,4 @@
-FROM docker.io/library/rockylinux:${releasever}
+FROM docker.io/rockylinux/rockylinux:${releasever}
 
 RUN echo "${releasever}" >/etc/dnf/vars/releasever \
     && dnf clean all
