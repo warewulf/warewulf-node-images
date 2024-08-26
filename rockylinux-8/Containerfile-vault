@@ -1,4 +1,4 @@
-FROM docker.io/library/rockylinux:${releasever}
+FROM docker.io/rockylinux/rockylinux:${releasever}
 
 RUN sed -i /etc/yum.repos.d/Rocky*.repo \
       -e 's/^#baseurl=/baseurl=/' \
