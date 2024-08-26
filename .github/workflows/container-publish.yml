@@ -23,10 +23,6 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - os: centos
-            version: 7
-            context: centos-7
-            file: centos-7/Containerfile
           - os: rockylinux
             version: 8
             context: rockylinux-8
