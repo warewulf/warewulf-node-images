@@ -23,18 +23,10 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - os: centos
-            version: 7
-            context: centos-7
-            file: centos-7/Containerfile
           - os: rockylinux
             version: 8
             context: rockylinux-8
             file: rockylinux-8/Containerfile
-          - os: rockylinux
-            version: 8.6
-            context: rockylinux-8
-            file: rockylinux-8/Containerfile-8.6
           - os: rockylinux
             version: 8.7
             context: rockylinux-8
@@ -47,6 +39,10 @@ jobs:
             version: 8.9
             context: rockylinux-8
             file: rockylinux-8/Containerfile-8.9
+          - os: rockylinux
+            version: 8.10
+            context: rockylinux-8
+            file: rockylinux-8/Containerfile-8.10
           - os: rockylinux
             version: 9
             context: rockylinux-9
@@ -67,6 +63,10 @@ jobs:
             version: 9.3
             context: rockylinux-9
             file: rockylinux-9/Containerfile-9.3
+          - os: rockylinux
+            version: 9.4
+            context: rockylinux-9
+            file: rockylinux-9/Containerfile-9.4
           - os: leap
             version: 15
             context: leap
