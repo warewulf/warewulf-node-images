@@ -24,7 +24,7 @@ jobs:
       matrix:
         include:
           - os: rockylinux
-            version: 8
+            version: "8"
             context: rockylinux-8
             file: rockylinux-8/Containerfile
           - os: rockylinux
@@ -32,19 +32,19 @@ jobs:
             context: rockylinux-8
             file: rockylinux-8/Containerfile-8.7
           - os: rockylinux
-            version: 8.8
+            version: "8.8"
             context: rockylinux-8
             file: rockylinux-8/Containerfile-8.8
           - os: rockylinux
-            version: 8.9
+            version: "8.9"
             context: rockylinux-8
             file: rockylinux-8/Containerfile-8.9
           - os: rockylinux
-            version: 8.10
+            version: "8.10"
             context: rockylinux-8
             file: rockylinux-8/Containerfile-8.10
           - os: rockylinux
-            version: 9
+            version: "9"
             context: rockylinux-9
             file: rockylinux-9/Containerfile
           - os: rockylinux
@@ -52,23 +52,23 @@ jobs:
             context: rockylinux-9
             file: rockylinux-9/Containerfile-9.0
           - os: rockylinux
-            version: 9.1
+            version: "9.1"
             context: rockylinux-9
             file: rockylinux-9/Containerfile-9.1
           - os: rockylinux
-            version: 9.2
+            version: "9.2"
             context: rockylinux-9
             file: rockylinux-9/Containerfile-9.2
           - os: rockylinux
-            version: 9.3
+            version: "9.3"
             context: rockylinux-9
             file: rockylinux-9/Containerfile-9.3
           - os: rockylinux
-            version: 9.4
+            version: "9.4"
             context: rockylinux-9
             file: rockylinux-9/Containerfile-9.4
           - os: leap
-            version: 15
+            version: "15"
             context: leap
             file: leap/Containerfile.15
           - os: leap
