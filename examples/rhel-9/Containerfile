@@ -1,31 +1,12 @@
 FROM registry.access.redhat.com/ubi9/ubi:9.3
 
-# copy the build system's subscription
-# https://access.redhat.com/solutions/5870841
-##COPY subscription/redhat.repo /etc/yum.repos.d/redhat.repo
-##COPY subscription/rhsm/* /etc/rhsm
-##COPY subscription/entitlement/* /etc/pki/entitlement
-##RUN rm -f /etc/rhsm-host && rm -f /etc/pki/entitlement-host
-
-
-#Versionlock the kernel:
-RUN dnf install -y \
-    kernel-0:5.14.0-362.24.1.el9_3 \
-    kernel-core-0:5.14.0-362.24.1.el9_3 \
-    kernel-headers-0:5.14.0-362.24.1.el9_3 \
-    kernel-modules-core-0:5.14.0-362.24.1.el9_3
-
-RUN dnf install -y \
-    python3-dnf-plugin-versionlock
-RUN dnf versionlock -y \
-    kernel-0:5.14.0-362.24.1.el9_3.* \
-    kernel-core-0:5.14.0-362.24.1.el9_3.* \
-    kernel-headers-0:5.14.0-362.24.1.el9_3.* \
-    kernel-modules-core-0:5.14.0-362.24.1.el9_3.*
-
-
 # this imitates a server groupinstall
 RUN dnf install -y --allowerasing \
+      kernel-0:5.14.0-362.24.1.el9_3 \
+      kernel-core-0:5.14.0-362.24.1.el9_3 \
+      kernel-headers-0:5.14.0-362.24.1.el9_3 \
+      kernel-modules-core-0:5.14.0-362.24.1.el9_3 \
+      python3-dnf-plugin-versionlock \
       coreutils \
       cpio \
       dhclient \
@@ -52,11 +33,21 @@ RUN dnf install -y --allowerasing \
       which \
       words \
       rdma-core \
-    && dnf clean all
+    && dnf clean all \
+    && dnf versionlock -y \
+    kernel-0:5.14.0-362.24.1.el9_3.* \
+    kernel-core-0:5.14.0-362.24.1.el9_3.* \
+    kernel-headers-0:5.14.0-362.24.1.el9_3.* \
+    kernel-modules-core-0:5.14.0-362.24.1.el9_3.*
 
 # Unmask what RHEL masked in the ubi
 # Needed to get an actual login tty
-RUN rm -f /etc/systemd/system/systemd-logind.service && rm -f /etc/systemd/system/getty.target && rm -f /etc/systemd/system/console-getty.service && rm -f /etc/systemd/system/sys-fs-fuse-connections.mount && rm -f /etc/systemd/system/systemd-remount-fs.service && rm -f /etc/systemd/system/dev-hugepages.mount
+RUN rm -f /etc/systemd/system/systemd-logind.service \
+    && rm -f /etc/systemd/system/getty.target \
+    && rm -f /etc/systemd/system/console-getty.service \
+    && rm -f /etc/systemd/system/sys-fs-fuse-connections.mount \
+    && rm -f /etc/systemd/system/systemd-remount-fs.service \
+    && rm -f /etc/systemd/system/dev-hugepages.mount
 
 # For SELinux enabled nodes:
 
