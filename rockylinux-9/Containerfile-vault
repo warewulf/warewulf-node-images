@@ -33,6 +33,7 @@ RUN dnf update -y \
       wget \
       which \
       words \
+    && dnf remove -y selinux-policy \
     && dnf clean all
 
 COPY excludes /etc/warewulf/
