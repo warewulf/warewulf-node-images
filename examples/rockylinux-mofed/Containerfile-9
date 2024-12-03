@@ -1,4 +1,6 @@
-FROM ghcr.io/warewulf/warewulf-rockylinux:9.2
+FROM ghcr.io/warewulf/warewulf-rockylinux:9.4
+
+ARG MOFED_TGZ
 
 RUN dnf -y install \
         gcc \
@@ -12,6 +14,7 @@ RUN dnf -y install \
         python3-devel \
         elfutils-libelf-devel \
         gcc-gfortran \
+        libnl3 \
         tk \
         kernel-{core,devel,headers,modules-extra} \
         perl-sigtrap \
@@ -20,6 +23,6 @@ RUN dnf -y install \
     && dnf -y remove $(dnf repoquery --installonly --latest-limit=-1 -q) \
     && dnf clean all
 
-RUN (cd /tmp && tar -xf /mnt/MLNX_OFED_LINUX-5.8-3.0.7.0-rhel9.2-x86_64.tgz) \
-    && (cd /tmp/MLNX_OFED_LINUX-5.8-3.0.7.0-rhel9.2-x86_64 && ./mlnxofedinstall --distro rhel9.2 --skip-repo --kernel $(rpm -q kernel-core --qf '%{version}-%{release}.%{arch}\n' | tail -n 1) --add-kernel-support --hpc) \
-    && rm -rf /tmp/MLNX_OFED_LINUX*
+RUN (cd /tmp && tar -xf /mnt/$MOFED_TGZ) \
+    && (cd /tmp/MLNX_OFED_LINUX* && ./mlnxofedinstall --distro rhel9.4 --skip-repo --kernel $(rpm -q kernel-core --qf '%{version}-%{release}.%{arch}\n' | tail -n 1) --add-kernel-support --hpc --without-fw-update) \
+    && rm -rf /tmp/MLNX_OFED_LINUX* /etc/machine-id
