@@ -87,6 +87,10 @@ jobs:
             version: "12.0"
             context: debian
             file: debian/Containerfile-12.0
+          - os: ubuntu
+            version: "24.04"
+            context: ubuntu-24
+            file: ubuntu-24/Containerfile
 
     permissions:
       contents: read
