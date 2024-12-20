@@ -1,0 +1,33 @@
+FROM ubuntu:24.04
+
+
+# ----- install vital packages -----
+ENV DEBIAN_FRONTEND teletype
+RUN apt-get update && apt-get install -y --no-install-recommends \
+	apt-utils \
+	kmod \
+	systemd-sysv \
+	dbus \
+	openssh-client \
+	openssh-server \
+	isc-dhcp-client \
+	pciutils \
+	strace \
+	nfs-common \
+	ethtool\
+	linux-image-generic \
+	ifupdown \
+	ifmetric \
+	netbase && \
+	apt-get autoremove -y && \
+	rm -rf /var/lib/apt/lists/*
+
+
+COPY excludes /etc/warewulf/
+COPY container_exit.sh /etc/warewulf/
+
+CMD [ "/bin/echo", "-e", \
+      "This image is intended to be used with the Warewulf cluster management and", \
+      "\nprovisioning system.", \
+      "\n", \
+      "\nFor more information about Warewulf, visit https://warewulf.org" ]
