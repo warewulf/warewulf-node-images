@@ -5,5 +5,5 @@ RUN dnf -y install dnf-plugins-core epel-release kernel-headers \
     && dnf -y module install nvidia-driver:latest-dkms \
     && dnf -y install datacenter-gpu-manager \
     && dnf clean all \
-    && ls /lib/modules | xargs -n1 /usr/lib/dkms/dkms_autoinstaller start \
+    && for dir in /usr/src/kernels/*; do dkms autoinstall --kernelver $(basename $dir); done \
     && dkms status
