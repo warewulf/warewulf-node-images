@@ -1,0 +1,5 @@
+FROM ghcr.io/warewulf/warewulf-rockylinux:9
+
+RUN dnf -y install kernel-devel \
+    && dnf clean all \
+    && for dir in /usr/src/kernels/*; do /bin/sh /mnt/NVIDIA-Linux.run -X --ui=none --no-backup --no-questions --kernel-name=$(basename $dir); done
