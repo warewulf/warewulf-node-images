@@ -1,0 +1,41 @@
+FROM quay.io/almalinuxorg/9-minimal:${release}
+
+RUN sed -i /etc/yum.repos.d/almalinux*.repo \
+      -e 's/^# baseurl=/baseurl=/' \
+      -e 's/^mirrorlist=/#mirrorlist=/' \
+      -e 's/\/almalinux\//\/vault\//' \
+      -e 's/\$releasever/${release}/' \
+    && microdnf clean all
+
+RUN microdnf install -y dnf \
+    && dnf remove -y microdnf
+
+RUN dnf update -y \
+    && dnf install -y --allowerasing @core \
+    && dnf install -y --allowerasing \
+      dhclient \
+      initscripts \
+      ipmitool \
+      kernel-core \
+      kernel-modules \
+      net-tools \
+      nfs-utils \
+      pciutils \
+      rsync \
+      strace \
+      sudo \
+      wget \
+      words \
+    && dnf remove -y selinux-policy \
+    && dnf clean all
+
+RUN chmod u+w / # https://github.com/openhpc/ohpc/issues/2061
+
+COPY excludes /etc/warewulf/
+COPY container_exit.sh /etc/warewulf/
+
+CMD [ "/bin/echo", "-e", \
+      "This image is intended to be used with the Warewulf cluster management and", \
+      "\nprovisioning system.", \
+      "\n", \
+      "\nFor more information about Warewulf, visit https://warewulf.org" ]
