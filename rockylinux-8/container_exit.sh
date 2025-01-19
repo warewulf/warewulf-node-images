@@ -11,5 +11,11 @@ https://rockylinux.org/support
 
 export LANG=C LC_CTYPE=C
 
+rm -f /etc/machine-id
+if rpm -q warewulf-dracut --quiet
+then
+	dracut --no-hostonly --add wwinit --regenerate-all
+fi
+
 set -x
 dnf clean all
