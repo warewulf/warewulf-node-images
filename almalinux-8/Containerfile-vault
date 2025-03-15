@@ -1,9 +1,9 @@
-FROM docker.io/rockylinux/rockylinux:${releasever}
+FROM docker.io/almalinux:${releasever}
 
-RUN sed -i /etc/yum.repos.d/Rocky*.repo \
-      -e 's/^#baseurl=/baseurl=/' \
-      -e 's/^mirrorlist=/#mirrorlist=/' \
-    && echo 'vault/rocky' >/etc/dnf/vars/contentdir \
+RUN sed -i /etc/yum.repos.d/almalinux*.repo \
+      -e 's/^# baseurl=/baseurl=/' \
+      -e 's/^mirrorlist=/# mirrorlist=/' \
+      -e 's|/almalinux/|/vault/|' \
     && echo "${releasever}" >/etc/dnf/vars/releasever \
     && dnf clean all
 

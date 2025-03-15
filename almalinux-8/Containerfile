@@ -1,4 +1,4 @@
-FROM docker.io/rockylinux/rockylinux:8
+FROM docker.io/almalinux:8
 
 RUN dnf update -y \
     && dnf install -y --allowerasing \
