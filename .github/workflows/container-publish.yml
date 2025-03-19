@@ -182,7 +182,7 @@ jobs:
         uses: docker/metadata-action@507c2f2dc502c992ad446e3d7a5dfbe311567a96
         with:
           images: |
-            ghcr.io/warewulf/warewulf-${{ matrix.os }}
+            ghcr.io/${{ github.repository_owner }}/warewulf-${{ matrix.os }}
           tags: |
             type=schedule
             type=raw,${{ matrix.version }}
