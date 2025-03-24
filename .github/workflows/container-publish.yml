@@ -71,6 +71,54 @@ jobs:
             version: "9.5"
             context: rockylinux-9
             file: rockylinux-9/Containerfile-9.5
+          - os: almalinux
+            version: "8"
+            context: almalinux-8
+            file: almalinux-8/Containerfile
+          - os: almalinux
+            version: 8.7
+            context: almalinux-8
+            file: almalinux-8/Containerfile-8.7
+          - os: almalinux
+            version: "8.8"
+            context: almalinux-8
+            file: almalinux-8/Containerfile-8.8
+          - os: almalinux
+            version: "8.9"
+            context: almalinux-8
+            file: almalinux-8/Containerfile-8.9
+          - os: almalinux
+            version: "8.10"
+            context: almalinux-8
+            file: almalinux-8/Containerfile-8.10
+          - os: almalinux
+            version: "9"
+            context: almalinux-9
+            file: almalinux-9/Containerfile
+          - os: almalinux
+            version: "9.0"
+            context: almalinux-9
+            file: almalinux-9/Containerfile-9.0
+          - os: almalinux
+            version: "9.1"
+            context: almalinux-9
+            file: almalinux-9/Containerfile-9.1
+          - os: almalinux
+            version: "9.2"
+            context: almalinux-9
+            file: almalinux-9/Containerfile-9.2
+          - os: almalinux
+            version: "9.3"
+            context: almalinux-9
+            file: almalinux-9/Containerfile-9.3
+          - os: almalinux
+            version: "9.4"
+            context: almalinux-9
+            file: almalinux-9/Containerfile-9.4
+          - os: almalinux
+            version: "9.5"
+            context: almalinux-9
+            file: almalinux-9/Containerfile-9.5
           - os: leap
             version: "15"
             context: leap
@@ -104,6 +152,8 @@ jobs:
         run: |
           make -C rockylinux-8
           make -C rockylinux-9
+          make -C almalinux-8
+          make -C almalinux-9
 
       # Install the cosign tool
       # https://github.com/sigstore/cosign-installer
@@ -132,7 +182,7 @@ jobs:
         uses: docker/metadata-action@507c2f2dc502c992ad446e3d7a5dfbe311567a96
         with:
           images: |
-            ghcr.io/warewulf/warewulf-${{ matrix.os }}
+            ghcr.io/${{ github.repository_owner }}/warewulf-${{ matrix.os }}
           tags: |
             type=schedule
             type=raw,${{ matrix.version }}
