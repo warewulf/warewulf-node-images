@@ -37,6 +37,7 @@ RUN dnf update -y \
 
 RUN chmod u+w / # https://github.com/openhpc/ohpc/issues/2061
 
+COPY etc/ /etc/
 COPY excludes /etc/warewulf/
 COPY container_exit.sh /etc/warewulf/
 
