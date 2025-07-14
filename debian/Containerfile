@@ -23,6 +23,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 COPY excludes /etc/warewulf/
 COPY container_exit.sh /etc/warewulf/
+RUN /etc/warewulf/container_exit.sh
 
 CMD [ "/bin/echo", "-e", \
       "This image is intended to be used with the Warewulf cluster management and", \

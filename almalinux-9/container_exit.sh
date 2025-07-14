@@ -13,3 +13,4 @@ export LANG=C LC_CTYPE=C
 
 set -x
 dnf clean all
+rm -f /etc/machine-id /var/lib/dbus/machine-id

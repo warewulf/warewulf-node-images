@@ -43,6 +43,7 @@ RUN chmod u+w / # https://github.com/openhpc/ohpc/issues/2061
 
 COPY excludes /etc/warewulf/
 COPY container_exit.sh /etc/warewulf/
+RUN /etc/warewulf/container_exit.sh
 
 CMD [ "/bin/echo", "-e", \
       "This image is intended to be used with the Warewulf cluster management and", \
