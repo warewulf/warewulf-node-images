@@ -87,6 +87,10 @@ jobs:
             version: "12.0"
             context: debian
             file: debian/Containerfile-12.0
+          - os: openeuler
+            version: "24.03"
+            context: openeuler-24.03
+            file: openeuler-24.03/Containerfile
 
     permissions:
       contents: read
