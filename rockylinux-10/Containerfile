@@ -1,0 +1,42 @@
+FROM docker.io/rockylinux/rockylinux:9
+
+RUN dnf update -y \
+    && dnf install -y --allowerasing \
+      coreutils \
+      cpio \
+      dhclient \
+      e2fsprogs \
+      ethtool \
+      findutils \
+      initscripts \
+      ipmitool \
+      iproute \
+      kernel-core \
+      kernel-modules \
+      net-tools \
+      NetworkManager \
+      nfs-utils \
+      openssh-clients \
+      openssh-server \
+      pciutils \
+      psmisc \
+      rsync \
+      rsyslog \
+      strace \
+      wget \
+      which \
+      words \
+    && dnf remove -y selinux-policy \
+    && dnf clean all
+
+RUN chmod u+w / # https://github.com/openhpc/ohpc/issues/2061
+
+COPY excludes /etc/warewulf/
+COPY container_exit.sh /etc/warewulf/
+RUN /etc/warewulf/container_exit.sh
+
+CMD [ "/bin/echo", "-e", \
+      "This image is intended to be used with the Warewulf cluster management and", \
+      "\nprovisioning system.", \
+      "\n", \
+      "\nFor more information about Warewulf, visit https://warewulf.org" ]
