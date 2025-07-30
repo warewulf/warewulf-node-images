@@ -1,4 +1,11 @@
-FROM docker.io/rockylinux/rockylinux:10
+FROM docker.io/library/almalinux:${release}
+
+RUN sed -i /etc/yum.repos.d/almalinux*.repo \
+      -e 's/^# baseurl=/baseurl=/' \
+      -e 's/^mirrorlist=/# mirrorlist=/' \
+      -e 's/\$releasever/${release}/' \
+      -e 's|/almalinux/|/vault/|' \
+    && dnf clean all
 
 RUN dnf update -y \
     && dnf install -y --allowerasing \

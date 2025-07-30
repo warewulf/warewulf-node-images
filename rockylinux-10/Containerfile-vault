@@ -11,7 +11,6 @@ RUN dnf update -y \
     && dnf install -y --allowerasing \
       coreutils \
       cpio \
-      dhclient \
       e2fsprogs \
       ethtool \
       findutils \
@@ -37,6 +36,9 @@ RUN dnf update -y \
     && dnf clean all
 
 RUN chmod u+w / # https://github.com/openhpc/ohpc/issues/2061
+# remove unused dynamic system user
+RUN userdel systemd-oom && \
+    userdel systemd-coredump
 
 COPY excludes /etc/warewulf/
 COPY container_exit.sh /etc/warewulf/
