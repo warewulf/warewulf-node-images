@@ -1,16 +1,16 @@
-# AlmaLinux 9
+# AlmaLinux 10
 
-A Warewulf container definition based on AlmaLinux 9.
+A Warewulf container definition based on AlmaLinux 10.
 
 ```
-wwctl container import docker://ghcr.io/warewulf/warewulf-almalinux:9 almalinux-9
+wwctl container import docker://ghcr.io/warewulf/warewulf-almalinux:10 almalinux-10
 ```
 
 Also available are definitions for individual point releases (e.g., AlmaLinux
-9.0). To generate these Containerfiles, run `make`.
+10.0). To generate these Containerfiles, run `make`.
 
 The AlmaLinux community provides updates for the current point release of
-AlmaLinux 9. If you need to remain on a specific point release you may want
+AlmaLinux 10. If you need to remain on a specific point release you may want
 to engage with a commercial support provider for long-term support.
 
 **Note:** These container images are configured to minimize size. If you desire for

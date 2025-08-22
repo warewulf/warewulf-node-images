@@ -47,6 +47,14 @@ jobs:
             version: "9.6"
             context: rockylinux-9
             file: rockylinux-9/Containerfile-9.6
+          - os: rockylinux
+            version: "10"
+            context: rockylinux-10
+            file: rockylinux-10/Containerfile
+          - os: rockylinux
+            version: "10.0"
+            context: rockylinux-10
+            file: rockylinux-10/Containerfile-10.0
           - os: almalinux
             version: "8"
             context: almalinux-8
@@ -71,6 +79,14 @@ jobs:
             version: "9.6"
             context: almalinux-9
             file: almalinux-9/Containerfile-9.6
+          - os: almalinux
+            version: "10"
+            context: almalinux-10
+            file: almalinux-10/Containerfile
+          - os: almalinux
+            version: "10.0"
+            context: almalinux-10
+            file: almalinux-10/Containerfile-10.0
           - os: leap
             version: "15"
             context: leap
@@ -104,8 +120,10 @@ jobs:
         run: |
           make -C rockylinux-8
           make -C rockylinux-9
+          make -C rockylinux-10
           make -C almalinux-8
           make -C almalinux-9
+          make -C almalinux-10
 
       # Install the cosign tool
       # https://github.com/sigstore/cosign-installer
