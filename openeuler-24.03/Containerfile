@@ -1,0 +1,47 @@
+FROM docker.io/openeuler/openeuler:24.03-lts-sp2
+
+RUN dnf install -y --allowerasing \
+      kernel \
+      kernel-devel \
+      kernel-headers \
+      kernel-modules \
+      python3-dnf-plugin-versionlock \
+      coreutils \
+      cpio \
+      dhclient \
+      e2fsprogs \
+      ethtool \
+      findutils \
+      initscripts \
+      ipmitool \
+      iproute \
+      ncurses \
+      net-tools \
+      NetworkManager \
+      nfs-utils \
+      openssh-clients \
+      openssh-server \
+      pciutils \
+      policycoreutils-python-utils \
+      psmisc \
+      rsync \
+      rsyslog \
+      strace \
+      selinux-policy-targeted \
+      wget \
+      which \
+      words \
+      rdma-core \
+    && dnf clean all
+
+COPY excludes /etc/warewulf/
+COPY container_exit.sh /etc/warewulf/
+RUN chmod +x /etc/warewulf/container_exit.sh
+
+ENV LANG=C.UTF-8
+
+CMD [ "/bin/echo", "-e", \
+      "This image is intended to be used with the Warewulf cluster management and", \
+      "\nprovisioning system.", \
+      "\n", \
+      "\nFor more information about Warewulf, visit https://warewulf.org" ]
