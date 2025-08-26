@@ -12,6 +12,7 @@ These containers are published on the [GitHub container registry][1].
 
 * [Rocky Linux 8](rockylinux-8)
 * [Rocky Linux 9](rockylinux-9)
+* [openEuler 24.03](openeuler-24.03)
 * [openSUSE Leap](leap)
 
 ## Additional examples
