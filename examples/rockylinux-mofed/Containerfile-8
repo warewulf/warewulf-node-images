@@ -23,4 +23,5 @@ RUN dnf -y install \
 
 RUN (cd /tmp && tar -xf /mnt/$MOFED_TGZ) \
     && (cd /tmp/MLNX_OFED_LINUX* && ./mlnxofedinstall --distro rhel8.10 --skip-repo --kernel $(rpm -q kernel-core --qf '%{version}-%{release}.%{arch}\n' | tail -n 1) --add-kernel-support --hpc --without-fw-update) \
-    && rm -rf /tmp/MLNX_OFED_LINUX* /etc/machine-id
+    && rm -rf /tmp/MLNX_OFED_LINUX* \
+    && truncate -s0 /etc/machine-id
