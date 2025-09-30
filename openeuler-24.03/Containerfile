@@ -32,6 +32,7 @@ RUN dnf install -y --allowerasing \
       which \
       words \
       rdma-core \
+    && dnf remove -y selinux-policy \
     && dnf clean all
 
 COPY excludes /etc/warewulf/
