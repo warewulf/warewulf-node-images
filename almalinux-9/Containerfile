@@ -1,5 +1,6 @@
 FROM docker.io/library/almalinux:9
 
+RUN mkdir /boot # missing in the container
 RUN dnf update -y \
     && dnf install -y --allowerasing \
       coreutils \
