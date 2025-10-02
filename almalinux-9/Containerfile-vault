@@ -7,6 +7,7 @@ RUN sed -i /etc/yum.repos.d/almalinux*.repo \
       -e 's|/almalinux/|/vault/|' \
     && dnf clean all
 
+RUN mkdir /boot # missing in the container
 RUN dnf update -y \
     && dnf install -y --allowerasing \
       coreutils \
