@@ -32,7 +32,11 @@ RUN dnf install -y --allowerasing \
       which \
       words \
       rdma-core \
+    && dnf remove -y selinux-policy \
     && dnf clean all
+
+# remove unused dynamic system user
+RUN userdel systemd-coredump
 
 COPY excludes /etc/warewulf/
 COPY container_exit.sh /etc/warewulf/
