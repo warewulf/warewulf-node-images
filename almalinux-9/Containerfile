@@ -5,7 +5,6 @@ RUN dnf update -y \
     && dnf install -y --allowerasing \
       coreutils \
       cpio \
-      dhclient \
       e2fsprogs \
       ethtool \
       findutils \
