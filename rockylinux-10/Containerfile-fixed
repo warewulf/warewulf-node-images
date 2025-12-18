@@ -30,7 +30,6 @@ RUN dnf update -y \
       strace \
       wget \
       which \
-      words \
     && dnf remove -y selinux-policy \
     && dnf clean all
 
