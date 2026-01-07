@@ -1,5 +1,6 @@
 .PHONY: all
 all: Containerfile-10.0
+all: Containerfile-10.1
 
 .PHONY: clean
 clean:
@@ -8,5 +9,5 @@ clean:
 Containerfile-10.%: Containerfile-vault
 	env release=10.$* envsubst '$$release' <Containerfile-vault >$@
 
-Containerfile-10.0: Containerfile-fixed
-	env release=10.0 envsubst '$$release' <Containerfile-fixed >$@
+Containerfile-10.1: Containerfile-fixed
+	env release=10.1 envsubst '$$release' <Containerfile-fixed >$@
