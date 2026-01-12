@@ -43,7 +43,8 @@ RUN systemctl unmask \
       systemd-remount-fs.service
 
 COPY excludes /etc/warewulf/
-COPY container_exit.sh /etc/warewulf/
+COPY image_exit.sh /etc/warewulf/
+RUN ln -sf image_exit.sh /etc/warewulf/container_exit.sh && /etc/warewulf/image_exit.sh
 
 CMD [ "/bin/echo", "-e", \
       "This image is intended to be used with the Warewulf cluster management and", \

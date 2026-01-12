@@ -31,8 +31,8 @@ RUN chmod u+w / # https://github.com/openhpc/ohpc/issues/2061
 RUN userdel systemd-coredump # remove unused dynamic system user
 
 COPY excludes /etc/warewulf/
-COPY container_exit.sh /etc/warewulf/
-RUN /etc/warewulf/container_exit.sh
+COPY image_exit.sh /etc/warewulf/
+RUN ln -sf image_exit.sh /etc/warewulf/container_exit.sh && /etc/warewulf/image_exit.sh
 
 CMD [ "/bin/echo", "-e", \
       "This image is intended to be used with the Warewulf cluster management and", \
