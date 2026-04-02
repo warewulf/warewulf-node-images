@@ -42,8 +42,8 @@ RUN userdel systemd-oom && \
     userdel systemd-coredump
 
 COPY excludes /etc/warewulf/
-COPY container_exit.sh /etc/warewulf/
-RUN /etc/warewulf/container_exit.sh
+COPY image_exit.sh /etc/warewulf/
+RUN ln -sf image_exit.sh /etc/warewulf/container_exit.sh && /etc/warewulf/image_exit.sh
 
 CMD [ "/bin/echo", "-e", \
       "This image is intended to be used with the Warewulf cluster management and", \
