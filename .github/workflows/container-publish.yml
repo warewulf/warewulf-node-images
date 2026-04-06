@@ -98,23 +98,39 @@ jobs:
           - os: leap
             version: "15"
             context: leap
-            file: leap/Containerfile.15
+            file: leap/Containerfile-15
           - os: leap
-            version: latest
+            version: "16"
             context: leap
-            file: leap/Containerfile
+            file: leap/Containerfile-16.0
+          - os: leap
+            version: "16.0"
+            context: leap
+            file: leap/Containerfile-16.0
           - os: tumbleweed
             version: latest
             context: tumbleweed
             file: tumbleweed/Containerfile
           - os: debian
-            version: "12.0"
+            version: "12"
             context: debian
-            file: debian/Containerfile-12.0
+            file: debian/Containerfile-12
+          - os: debian
+            version: "13"
+            context: debian
+            file: debian/Containerfile-13
           - os: openeuler
             version: "24.03"
             context: openeuler-24.03
             file: openeuler-24.03/Containerfile
+          - os: ubuntu
+            version: "24.04"
+            context: ubuntu
+            file: ubuntu/Containerfile-24.04
+          - os: ubuntu
+            version: "26.04"
+            context: ubuntu
+            file: ubuntu/Containerfile-26.04
 
     permissions:
       contents: read
