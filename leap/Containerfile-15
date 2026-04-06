@@ -1,4 +1,4 @@
-FROM docker.io/opensuse/leap:latest
+FROM docker.io/opensuse/leap:15
 RUN zypper update -y \
     && zypper install -yt pattern \
         base \
@@ -40,7 +40,6 @@ RUN zypper update -y \
         wget \
         which \
         wicked \
-        words \
         zypper \
     && zypper clean \
     && systemctl enable sshd 

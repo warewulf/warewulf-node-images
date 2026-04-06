@@ -1,4 +1,4 @@
-FROM docker.io/opensuse/leap:15
+FROM opensuse/leap:16.0
 RUN zypper update -y \
     && zypper install -yt pattern \
         base \
@@ -14,13 +14,12 @@ RUN zypper update -y \
         gawk \
         grep \
         gzip \
-        ifplugd \
         ipmitool \
         iproute2 \
         iputils \
         kernel-default \
         less \
-        net-tools \
+        NetworkManager \
         nfs-client \
         openssh-clients \
         openssh-server \
@@ -32,18 +31,19 @@ RUN zypper update -y \
         sed \
         strace \
         sudo \
+        systemd \
         tar \
         tcpdump \
         timezone \
+        udev \
         util-linux \
-        vim \
         wget \
         which \
-        wicked \
-        words \
         zypper \
     && zypper clean \
-    && systemctl enable sshd 
+    && systemd-hwdb update \
+    && systemctl enable sshd \
+    && systemctl enable NetworkManager
 
 COPY excludes /etc/warewulf/
 COPY image_exit.sh /etc/warewulf/
