@@ -1,4 +1,4 @@
-FROM docker.io/openeuler/openeuler:24.03-lts-sp2
+FROM docker.io/openeuler/openeuler:24.03-lts-sp3
 
 RUN dnf install -y --allowerasing \
       kernel \
@@ -29,7 +29,6 @@ RUN dnf install -y --allowerasing \
       selinux-policy-targeted \
       wget \
       which \
-      words \
       rdma-core \
     && dnf remove -y selinux-policy \
     && dnf clean all

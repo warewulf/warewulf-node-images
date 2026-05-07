@@ -1,17 +1,15 @@
-FROM debian:12.0
-
+FROM debian:12
 
 # ----- install vital packages -----
-ENV DEBIAN_FRONTEND teletype
+ENV DEBIAN_FRONTEND=teletype
 RUN apt-get update && apt-get install -y --no-install-recommends \
+    ca-certificates \
 	kmod \
 	systemd-sysv \
 	dbus \
 	openssh-client \
 	openssh-server \
-	isc-dhcp-client \
 	pciutils \
-	strace \
 	nfs-common \
 	ethtool\
 	ifupdown \
@@ -19,7 +17,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 	ifmetric \
 	netbase && \
 	rm -rf /var/lib/apt/lists/*
-
 
 COPY excludes /etc/warewulf/
 COPY image_exit.sh /etc/warewulf/
