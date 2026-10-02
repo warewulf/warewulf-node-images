@@ -53,6 +53,9 @@ jobs:
           - {os: openeuler,   version: "24.03",  context: openeuler-24.03, file: openeuler-24.03/Containerfile}
           - {os: ubuntu,      version: "24.04",  context: ubuntu,          file: ubuntu/Containerfile-24.04}
           - {os: ubuntu,      version: "26.04",  context: ubuntu,          file: ubuntu/Containerfile-26.04}
+        include:
+          - arch: {platform: linux/amd64, runner: ubuntu-latest,    platform_pair: linux-amd64}
+            image: {os: almalinux,   version: "10-x86_64_v2",     context: almalinux-10,    file: almalinux-10/Containerfile-10-x86_64_v2}
 
     permissions:
       contents: read
